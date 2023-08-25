@@ -5,16 +5,11 @@ import json
 import pandas as pd
 import seaborn as sns
 from matplotlib import pyplot as plt
-% matplotlib inline
+#% matplotlib inline
 
 #-----------------------------------------------------
 
-This is the
-program
-after
-troubleshooting
-tweets
-extract
+#This is the program after troubleshooting tweets extract
 
 import tweepy
 from tqdm import tqdm
@@ -75,13 +70,13 @@ import pandas as pd
 
 df_tweets = pd.DataFrame.from_dict(tweets_dict_list)
 
-------------------------------------------------------------
+#------------------------------------------------------------
 
 #Let us find descriptive statistics of numerical values in data
 
 df_tweets.describe()
 
------------------------------------------------------------
+#-----------------------------------------------------------
 
 #Data Visualization
 
@@ -90,7 +85,7 @@ import json
 import pandas as pd
 import seaborn as sns
 from matplotlib import pyplot as plt
-% matplotlib inline
+#% matplotlib inline
 
 fig, ax = plt.subplots(1, 2)
 df_tweets.created_at.dt.weekday_name.value_counts().plot(kind='bar', figsize=(15, 5), ax=fig.axes[0])
@@ -103,14 +98,12 @@ plt.title("Maximum usage hours in a day")
 plt.title('Number of tweets')
 plt.xlabel('Date')
 
-pip
-install
-plotly as py
+#pip install plotly as py
 
-import plotly.plotly as py
+import plotly as py
 import plotly.graph_objs as go
 
-df_tweet['Time'] = pd.to_datetime(df_tweets['created_at'], format='%y-%m-%d %H:%M:%S')
+#df_tweet['Time'] = pd.to_datetime(df_tweets['created_at'], format='%y-%m-%d %H:%M:%S')
 tweetsT = df_tweets['Time']
 trace = go.Histogram(x=tweetsT, marker=dict(color='blue'), opacity=0.75)
 layout = go.Layout(title='Tweets activity over the years', height=450, width=1200, xaxis=dict(title='Month and Year'),
@@ -127,14 +120,12 @@ df_tweets_pop = df_tweets.groupby(['created_at', 'full_text'], as_index=False)['
     by='retweet_count')
 df_tweets_pop.tail(10)
 
----------------------------------------------------------------
+#---------------------------------------------------------------
 
 # Lets analyze commonly used words in the tweets
 
-pip install wordcloud
-
+#pip install wordcloud
 from wordcloud import WordCloud
-
 
 def plot_wordcloud(msg):
     plt.figure(figsize=(8, 8))
@@ -152,7 +143,7 @@ plot_wordcloud(df_tweets['cleaned_text'])
 
 # Lets analyse sentiments
 
-pip install textblob
+#pip install textblob
 
 from textblob import TextBlob
 import re
@@ -181,7 +172,7 @@ def analize_tweet(tweet):
 import numpy as np
 
 df_tweets['SA'] = np.array([analize_tweet(tweet) for tweet in df_tweets['full_text']])
-display(df_tweets.head(200))
+#display(df_tweets.head(200))
 
 pos_tweets = df_tweets[df_tweets['SA'] > 0]['full_text']
 neu_tweets = df_tweets[df_tweets['SA'] == 0]['full_text']
@@ -193,7 +184,7 @@ print("Percepntage Negetive Tweets: {}%".format(len(neg_tweets) * 100 / len(df_t
 
 import seaborn as sns
 from matplotlib import pyplot as plt
-% matplotlib inline
+#% matplotlib inline
 
 plt.figure(figsize=(10, 5))
 # ns.barplot(data=df_tweets,x="Day_Name",y="retweet_count",hue="SA")
@@ -202,25 +193,27 @@ sns.barplot(data=df_tweets, x=df_tweets.created_at.dt.weekday_name, y="retweet_c
 plt.xticks(rotation=90)
 plt.show()
 
-------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------
 
 #Lets identify the Emotions
 
-pip install indicoio from indicoio import political, sentiment, language, text_tags, keywords, fer
+#pip install indicoio
+
+#from indicoio import political, sentiment, language, text_tags, keywords, fer
 
 x_emotion = df_tweets.cleaned_text.values.tolist()
 
-import indicoio
+#import indicoio
 
-indicoio.config.api_key = 'af8ec2c2011ad98cb4a3856af355431e'
+#indicoio.config.api_key = 'af8ec2c2011ad98cb4a3856af355431e'
 
-b = indicoio.emotion(x_emotion)
-myvalues = [max(b[i], key=b[i].get) for i in range(len(b))]
-df_tweets['emotion'] = pd.Series((v for v in myvalues))
+#b = indicoio.emotion(x_emotion)
+#myvalues = [max(b[i], key=b[i].get) for i in range(len(b))]
+#df_tweets['emotion'] = pd.Series((v for v in myvalues))
 
-b = indicoio.personality(x_emotion)
-myvalues = [max(b[i], key=b[i].get) for i in range(len(b))]
-df_tweets['personality'] = pd.Series((v for v in myvalues))
+#b = indicoio.personality(x_emotion)
+#myvalues = [max(b[i], key=b[i].get) for i in range(len(b))]
+#df_tweets['personality'] = pd.Series((v for v in myvalues))
 
 df_tweets.head()
 
