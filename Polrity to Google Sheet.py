@@ -1,28 +1,21 @@
-pip
-install
-textblob
-pip
-install
-indicoio
-pip
-install
-gspread
-oauth2client
+#pip install textblob
+#pip install indicoio
+#pip install gspread
+#oauth2client
 
----------------------------------------------------------
+#---------------------------------------------------------
 
 import tweepy
 from tqdm import tqdm
 import numpy as np
 import json
 import pandas as pd
-import indicoio
+#import indicoio
 import seaborn as sns
 import json
 import datetime as dt
 from matplotlib import pyplot as plt
-% matplotlib
-inline
+#% matplotlib inline
 
 #---------------------------------------------------------
 
@@ -133,8 +126,8 @@ neg_tweets = df_tweets[df_tweets['SA'] == 'Negative']['text']
 
 #-------------------------------------------------------------------------
 
-import gspread as gc
-from oauth2client.service_account import ServiceAccountCredentials
+#import gspread as gc
+#from oauth2client.service_account import ServiceAccountCredentials
 
 #-------------------------------------------------------------------------
 
@@ -192,7 +185,7 @@ print("Percecntage of Neutral Tweets: ", (len(neu_tweets) * 100 / len(df_tweets[
 
 #-------------------------------------------------------------------------
 
-pip install cStringIO
+#pip install cStringIO
 
 #---------------------------------------------------------------
 
